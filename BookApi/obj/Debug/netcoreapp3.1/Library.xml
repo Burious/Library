@@ -51,5 +51,11 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:Library.Controllers.UserController.GetUsers">
+            <summary>
+            users
+            </summary>
+            <returns>Collection of books</returns>
+        </member>
     </members>
 </doc>
