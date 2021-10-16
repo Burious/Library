@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using BookApi.Db;
 using BookApi.Services;
 using System.Text;
+using Library.Services;
 
 namespace BookApi.Extensions
 {
@@ -14,6 +15,7 @@ namespace BookApi.Extensions
         public static void ConfigureServices(this IServiceCollection services)
         {
             services.AddTransient<IBookService, BookService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddTransient<IAuthenticationManager, AuthenticationManager>();
         }         
         

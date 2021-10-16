@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Library.Db;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,7 +11,9 @@ namespace BookApi.Db
         {
             services.AddDbContext<BookContext>(
                 o => o.UseSqlServer(configuration.GetConnectionString("SqlConnection")));
-               /* b => b.MigrationsAssembly("libraryDatabase")));*/
+            services.AddDbContext<UsersDBContext>(
+                o => o.UseSqlServer(configuration.GetConnectionString("RemoteSqlConnection")));
+            /* b => b.MigrationsAssembly("libraryDatabase")));*/
         }
     }
 }
