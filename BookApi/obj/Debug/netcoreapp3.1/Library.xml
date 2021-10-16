@@ -22,7 +22,7 @@
             </summary>
             <returns>Collection of books</returns>
         </member>
-        <member name="M:BookApi.Controllers.BooksController.GetBook(System.Int32)">
+        <member name="M:BookApi.Controllers.BooksController.GetBook(System.Guid)">
             <summary>
             This method finds a book for suggested Id
             </summary>
@@ -36,7 +36,7 @@
             <param name="book"></param>
             <returns></returns>
         </member>
-        <member name="M:BookApi.Controllers.BooksController.PutBooks(System.Int32,BookApi.Models.Book)">
+        <member name="M:BookApi.Controllers.BooksController.PutBooks(System.Guid,BookApi.Models.Book)">
             <summary>
             This method helps to change info about a book with suggested id
             </summary>
@@ -44,7 +44,7 @@
             <param name="book"></param>
             <returns></returns>
         </member>
-        <member name="M:BookApi.Controllers.BooksController.Delete(System.Int32)">
+        <member name="M:BookApi.Controllers.BooksController.Delete(System.Guid)">
             <summary>
             This method deletes a book with suggested id
             </summary>

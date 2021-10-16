@@ -20,21 +20,24 @@ namespace BookApi.Db
             modelBuilder.Entity<Book>().HasData(
                                 new Book
                                 {
-                                    //Id = Guid.NewGuid(),
-                                    Id = 1,
-                                    Title = "T1",
-                                    Author = "A1",
-                                    Description = "D1",
-                                    Publishment = "P1"
+                                    Id = Guid.NewGuid(),
+                                    //Id = 1,
+                                    Title = "CLR via C#",
+                                    Author = "Jeffrey Richter",
+                                    Description = "Programming on Microsoft .Net platform with C# language",
+                                    Publishment = "Piter Publishment",
+                                    YearOfPublish = new DateTime(2020,1,1)
+                                    
                                 },
                                 new Book
                                 {
-                                    //Id = Guid.NewGuid(),
-                                    Id=2,
-                                    Title = "T2",
-                                    Author = "A2",
-                                    Description = "D2",
-                                    Publishment = "P2"
+                                    Id = Guid.NewGuid(),
+                                    //Id=2,
+                                    Title = "Investor's Manifest",
+                                    Author = "William J. Bernstein",
+                                    Description = "Prepearing for Prosperity, Armagedon, and everything in between",
+                                    Publishment = "Alpina publisher",
+                                    YearOfPublish = new DateTime(2021,1,1)
                                 }
                             );  
         }
@@ -45,19 +48,19 @@ namespace BookApi.Db
             var user1 = new IdentityUser
             {
                 Id = "1",
-                UserName = "patrick",
-                NormalizedUserName = "patrick".ToUpper(),
-                Email = "patrick@fakemail.com",
+                UserName = "artsemi",
+                NormalizedUserName = "artsemi".ToUpper(),
+                Email = "artsemi@gmail.com",
                 EmailConfirmed = true
             };
-            user1.PasswordHash = ph.HashPassword(user1, "Patrick123");
+            user1.PasswordHash = ph.HashPassword(user1, "Artsemi123");
 
             var user2 = new IdentityUser
             {
                 Id = "2",
                 UserName = "mike",
                 NormalizedUserName = "mike".ToUpper(),
-                Email = "mike@fakemail.Com",
+                Email = "mike@gmail.Com",
                 EmailConfirmed = true
             };
             user2.PasswordHash = ph.HashPassword(user2, "Mike123");
