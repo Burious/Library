@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BookApi.Migrations
+namespace Library.Migrations
 {
-    public partial class initial : Migration
+    public partial class addmigrationm6 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,12 +50,12 @@ namespace BookApi.Migrations
                 name: "Books",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Publishment = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Publishment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    YearOfPublish = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -173,8 +173,8 @@ namespace BookApi.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "admin_role", "56b75dd9-d2ef-444f-8710-28ee665e6c0e", "admin", "ADMIN" },
-                    { "reader_role", "356cddaf-efc4-46fa-96d1-1e5a751c05ec", "reader", "READER" }
+                    { "admin_role", "6c1fa9aa-1810-4821-bd47-e404442cba37", "admin", "ADMIN" },
+                    { "reader_role", "678bc68c-8e5d-4c7d-aeb7-053d234573d0", "reader", "READER" }
                 });
 
             migrationBuilder.InsertData(
@@ -182,17 +182,17 @@ namespace BookApi.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, "6c90bd64-d629-4afb-accd-5b2367c51803", "patrick@fakemail.com", true, false, null, null, "PATRICK", "AQAAAAEAACcQAAAAEOJOSS/mhX/yJTRZdns7Ueht20hOFiUFTkkOy/l+hgdbqnfe9lPZ2Ej5wx3GF+escg==", null, false, "bbfb8c92-2753-40b6-9085-6ff8f25b5941", false, "patrick" },
-                    { "2", 0, "465df92b-fc3f-4e00-874c-a7e3e5e437a0", "mike@fakemail.Com", true, false, null, null, "MIKE", "AQAAAAEAACcQAAAAELnTjROQkvvSvCeBXVbAD5icVGVedqK/ZTLDZNmNgZ7mlwT/Aeq+cDvOCOIJ/gr0Xg==", null, false, "72b92e12-baec-49ba-9f48-2245964a41de", false, "mike" }
+                    { "1", 0, "a1c15099-367c-4199-87b5-79a4c6061c26", "artsemi@gmail.com", true, false, null, null, "ARTSEMI", "AQAAAAEAACcQAAAAELE3qSDYeVqkQk0ZHUOgI1w9dU8eWkIhatZvcwUBTGboe9MSDbCcVl0yEJ6IRlfT0g==", null, false, "66fe680b-0ebf-4cd8-913c-6db322e419be", false, "artsemi" },
+                    { "2", 0, "c95a8ab9-bddf-4d04-8d0c-5f9ca360b39d", "mike@gmail.Com", true, false, null, null, "MIKE", "AQAAAAEAACcQAAAAEC2HVs1x8FrSQGSaUoTNbA46EijASOPoe+0dSGLclKXrouBf5xkTbm3qI0H4NaAAzg==", null, false, "03dc5465-7f8f-476f-8ee2-dae02a1def33", false, "mike" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "Author", "Description", "Publishment", "Title" },
+                columns: new[] { "Id", "Author", "Description", "Publishment", "Title", "YearOfPublish" },
                 values: new object[,]
                 {
-                    { 1, "A1", "D1", "P1", "T1" },
-                    { 2, "A2", "D2", "P2", "T2" }
+                    { new Guid("e950b8a9-58e7-4e2e-8f4a-04cf4adddf79"), "Jeffrey Richter", "Programming on Microsoft .Net platform with C# language", "Piter Publishment", "CLR via C#", new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("5815556f-84df-4c42-b264-f3c924f53593"), "William J. Bernstein", "Prepearing for Prosperity, Armagedon, and everything in between", "Alpina publisher", "Investor's Manifest", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(

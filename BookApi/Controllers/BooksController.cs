@@ -43,7 +43,7 @@ namespace BookApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}"), Authorize]
-        public async Task<ActionResult<Book>> GetBook(int id)
+        public async Task<ActionResult<Book>> GetBook(Guid id)
         {
             return await _bookService.Get(id);
         }
@@ -67,7 +67,7 @@ namespace BookApi.Controllers
         /// <param name="book"></param>
         /// <returns></returns>
         [HttpPut, Authorize(Roles = "admin")]
-        public async Task<ActionResult> PutBooks(int id, [FromBody] Book book)
+        public async Task<ActionResult> PutBooks(Guid id, [FromBody] Book book)
         {
             if (id != book.Id)
             {
@@ -84,7 +84,7 @@ namespace BookApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}"), Authorize(Roles = "admin")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(Guid id)
         {
             var bookToDelete = await _bookService.Get(id);
             if (bookToDelete == null) return NotFound();

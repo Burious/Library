@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BookApi.Migrations
+namespace Library.Migrations
 {
     [DbContext(typeof(BookContext))]
-    [Migration("20211015211418_initial1")]
-    partial class initial1
+    [Migration("20211016151007_add-migration m6")]
+    partial class addmigrationm6
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,10 +23,9 @@ namespace BookApi.Migrations
 
             modelBuilder.Entity("BookApi.Models.Book", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
@@ -40,6 +39,9 @@ namespace BookApi.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("YearOfPublish")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.ToTable("Books");
@@ -47,19 +49,21 @@ namespace BookApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
-                            Author = "A1",
-                            Description = "D1",
-                            Publishment = "P1",
-                            Title = "T1"
+                            Id = new Guid("e950b8a9-58e7-4e2e-8f4a-04cf4adddf79"),
+                            Author = "Jeffrey Richter",
+                            Description = "Programming on Microsoft .Net platform with C# language",
+                            Publishment = "Piter Publishment",
+                            Title = "CLR via C#",
+                            YearOfPublish = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = 2,
-                            Author = "A2",
-                            Description = "D2",
-                            Publishment = "P2",
-                            Title = "T2"
+                            Id = new Guid("5815556f-84df-4c42-b264-f3c924f53593"),
+                            Author = "William J. Bernstein",
+                            Description = "Prepearing for Prosperity, Armagedon, and everything in between",
+                            Publishment = "Alpina publisher",
+                            Title = "Investor's Manifest",
+                            YearOfPublish = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -93,14 +97,14 @@ namespace BookApi.Migrations
                         new
                         {
                             Id = "admin_role",
-                            ConcurrencyStamp = "343d7727-4af9-472f-b937-1185de3fc2f9",
+                            ConcurrencyStamp = "6c1fa9aa-1810-4821-bd47-e404442cba37",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "reader_role",
-                            ConcurrencyStamp = "7cbfc8d5-2664-4f7f-93d4-ba61cefe9dd6",
+                            ConcurrencyStamp = "678bc68c-8e5d-4c7d-aeb7-053d234573d0",
                             Name = "reader",
                             NormalizedName = "READER"
                         });
@@ -199,29 +203,29 @@ namespace BookApi.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cbcae747-8cc6-4ef8-bab7-f1cd0abe9281",
-                            Email = "patrick@fakemail.com",
+                            ConcurrencyStamp = "a1c15099-367c-4199-87b5-79a4c6061c26",
+                            Email = "artsemi@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedUserName = "PATRICK",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIWD+BrocJtYb4FfbpkrwwiEbeDTBx2w2MnTA89ZVzDb1ro3cIZV/Av1KNFr0wJd2Q==",
+                            NormalizedUserName = "ARTSEMI",
+                            PasswordHash = "AQAAAAEAACcQAAAAELE3qSDYeVqkQk0ZHUOgI1w9dU8eWkIhatZvcwUBTGboe9MSDbCcVl0yEJ6IRlfT0g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f08f5e54-373e-491d-ad15-bbf0671fcc84",
+                            SecurityStamp = "66fe680b-0ebf-4cd8-913c-6db322e419be",
                             TwoFactorEnabled = false,
-                            UserName = "patrick"
+                            UserName = "artsemi"
                         },
                         new
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "25475bfa-43b0-4d34-ac4e-6df67d00ff2d",
-                            Email = "mike@fakemail.Com",
+                            ConcurrencyStamp = "c95a8ab9-bddf-4d04-8d0c-5f9ca360b39d",
+                            Email = "mike@gmail.Com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "MIKE",
-                            PasswordHash = "AQAAAAEAACcQAAAAELL6FtwvcQd1BFNrSJ9sj7mMvjOtQOyk+jCvg8Z47l8iaXqy3YP4BvGsCNWc7G1Ftg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC2HVs1x8FrSQGSaUoTNbA46EijASOPoe+0dSGLclKXrouBf5xkTbm3qI0H4NaAAzg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "941d6a0e-0810-4eeb-ae9f-764f9ac26fc6",
+                            SecurityStamp = "03dc5465-7f8f-476f-8ee2-dae02a1def33",
                             TwoFactorEnabled = false,
                             UserName = "mike"
                         });
