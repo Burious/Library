@@ -7,22 +7,27 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Library.Db
 {
-    public partial class UsersDBContext : DbContext
+    public partial class RemoteBooksDBContext : DbContext
     {
-        public UsersDBContext()
+        public RemoteBooksDBContext()
         {
         }
 
-        public UsersDBContext(DbContextOptions<UsersDBContext> options)
+        public RemoteBooksDBContext(DbContextOptions<RemoteBooksDBContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<RemoteBook> RemoteBooks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<RemoteBook>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+            });
 
             OnModelCreatingPartial(modelBuilder);
         }

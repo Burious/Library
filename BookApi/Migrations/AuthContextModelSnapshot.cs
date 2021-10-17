@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Library.Migrations
 {
-    [DbContext(typeof(BookContext))]
-    partial class BookContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AuthContext))]
+    partial class AuthContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -18,52 +18,6 @@ namespace Library.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("BookApi.Models.Book", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Author")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Publishment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("YearOfPublish")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Books");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("e950b8a9-58e7-4e2e-8f4a-04cf4adddf79"),
-                            Author = "Jeffrey Richter",
-                            Description = "Programming on Microsoft .Net platform with C# language",
-                            Publishment = "Piter Publishment",
-                            Title = "CLR via C#",
-                            YearOfPublish = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("5815556f-84df-4c42-b264-f3c924f53593"),
-                            Author = "William J. Bernstein",
-                            Description = "Prepearing for Prosperity, Armagedon, and everything in between",
-                            Publishment = "Alpina publisher",
-                            Title = "Investor's Manifest",
-                            YearOfPublish = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -95,14 +49,14 @@ namespace Library.Migrations
                         new
                         {
                             Id = "admin_role",
-                            ConcurrencyStamp = "6c1fa9aa-1810-4821-bd47-e404442cba37",
+                            ConcurrencyStamp = "c0ac590e-0f63-41e2-8f5f-12e6ba1367e6",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "reader_role",
-                            ConcurrencyStamp = "678bc68c-8e5d-4c7d-aeb7-053d234573d0",
+                            ConcurrencyStamp = "823f3800-774d-4834-b0cd-6f458efd1fa9",
                             Name = "reader",
                             NormalizedName = "READER"
                         });
@@ -201,31 +155,16 @@ namespace Library.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a1c15099-367c-4199-87b5-79a4c6061c26",
+                            ConcurrencyStamp = "724b4eea-464a-4cc1-85ca-ea1605a0855d",
                             Email = "artsemi@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "ARTSEMI",
-                            PasswordHash = "AQAAAAEAACcQAAAAELE3qSDYeVqkQk0ZHUOgI1w9dU8eWkIhatZvcwUBTGboe9MSDbCcVl0yEJ6IRlfT0g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENn1VJMpSSvtTVz0ezUd+c1UUWW1pz0qhamI8RQjx0ZNSpNFrGLu9E+xCKnZLc2/hA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "66fe680b-0ebf-4cd8-913c-6db322e419be",
+                            SecurityStamp = "d167b08a-c178-4d68-93f9-cc601b3874eb",
                             TwoFactorEnabled = false,
-                            UserName = "artsemi"
-                        },
-                        new
-                        {
-                            Id = "2",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "c95a8ab9-bddf-4d04-8d0c-5f9ca360b39d",
-                            Email = "mike@gmail.Com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedUserName = "MIKE",
-                            PasswordHash = "AQAAAAEAACcQAAAAEC2HVs1x8FrSQGSaUoTNbA46EijASOPoe+0dSGLclKXrouBf5xkTbm3qI0H4NaAAzg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "03dc5465-7f8f-476f-8ee2-dae02a1def33",
-                            TwoFactorEnabled = false,
-                            UserName = "mike"
+                            UserName = "Artsemi"
                         });
                 });
 
@@ -294,11 +233,6 @@ namespace Library.Migrations
                         {
                             UserId = "1",
                             RoleId = "admin_role"
-                        },
-                        new
-                        {
-                            UserId = "2",
-                            RoleId = "reader_role"
                         });
                 });
 

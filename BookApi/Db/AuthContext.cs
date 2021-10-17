@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace BookApi.Db
 {
-    public class BookContext : IdentityDbContext<IdentityUser>
+    public class AuthContext : IdentityDbContext<IdentityUser>
     {
-        public BookContext(DbContextOptions<BookContext> options)
+        public AuthContext(DbContextOptions<AuthContext> options)
            : base(options)
         {
 
@@ -24,7 +24,7 @@ namespace BookApi.Db
             modelBuilder.Seed();
         }
 
-        public DbSet<Book> Books{ get; set; }
+       // public DbSet<Book> Books{ get; set; }
     }
 }
  

@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace BookApi.Models
+#nullable disable
+
+namespace Library.Models
 {
-    public class Book
+    public partial class RemoteBook
     {
         public Guid Id { get; set; }
-        //public int Id { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public string Description { get; set; }

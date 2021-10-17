@@ -9,9 +9,9 @@ namespace BookApi.Db
     {
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<BookContext>(
+            services.AddDbContext<AuthContext>(
                 o => o.UseSqlServer(configuration.GetConnectionString("SqlConnection")));
-            services.AddDbContext<UsersDBContext>(
+            services.AddDbContext<RemoteBooksDBContext>(
                 o => o.UseSqlServer(configuration.GetConnectionString("RemoteSqlConnection")));
             /* b => b.MigrationsAssembly("libraryDatabase")));*/
         }

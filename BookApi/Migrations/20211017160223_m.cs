@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Library.Migrations
 {
-    public partial class addmigrationm6 : Migration
+    public partial class m : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,22 +44,6 @@ namespace Library.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Books",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Publishment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    YearOfPublish = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Books", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -171,39 +155,22 @@ namespace Library.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[,]
-                {
-                    { "admin_role", "6c1fa9aa-1810-4821-bd47-e404442cba37", "admin", "ADMIN" },
-                    { "reader_role", "678bc68c-8e5d-4c7d-aeb7-053d234573d0", "reader", "READER" }
-                });
+                values: new object[] { "admin_role", "c0ac590e-0f63-41e2-8f5f-12e6ba1367e6", "admin", "ADMIN" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "reader_role", "823f3800-774d-4834-b0cd-6f458efd1fa9", "reader", "READER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[,]
-                {
-                    { "1", 0, "a1c15099-367c-4199-87b5-79a4c6061c26", "artsemi@gmail.com", true, false, null, null, "ARTSEMI", "AQAAAAEAACcQAAAAELE3qSDYeVqkQk0ZHUOgI1w9dU8eWkIhatZvcwUBTGboe9MSDbCcVl0yEJ6IRlfT0g==", null, false, "66fe680b-0ebf-4cd8-913c-6db322e419be", false, "artsemi" },
-                    { "2", 0, "c95a8ab9-bddf-4d04-8d0c-5f9ca360b39d", "mike@gmail.Com", true, false, null, null, "MIKE", "AQAAAAEAACcQAAAAEC2HVs1x8FrSQGSaUoTNbA46EijASOPoe+0dSGLclKXrouBf5xkTbm3qI0H4NaAAzg==", null, false, "03dc5465-7f8f-476f-8ee2-dae02a1def33", false, "mike" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Books",
-                columns: new[] { "Id", "Author", "Description", "Publishment", "Title", "YearOfPublish" },
-                values: new object[,]
-                {
-                    { new Guid("e950b8a9-58e7-4e2e-8f4a-04cf4adddf79"), "Jeffrey Richter", "Programming on Microsoft .Net platform with C# language", "Piter Publishment", "CLR via C#", new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("5815556f-84df-4c42-b264-f3c924f53593"), "William J. Bernstein", "Prepearing for Prosperity, Armagedon, and everything in between", "Alpina publisher", "Investor's Manifest", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
-                });
+                values: new object[] { "1", 0, "724b4eea-464a-4cc1-85ca-ea1605a0855d", "artsemi@gmail.com", true, false, null, null, "ARTSEMI", "AQAAAAEAACcQAAAAENn1VJMpSSvtTVz0ezUd+c1UUWW1pz0qhamI8RQjx0ZNSpNFrGLu9E+xCKnZLc2/hA==", null, false, "d167b08a-c178-4d68-93f9-cc601b3874eb", false, "Artsemi" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[] { "admin_role", "1" });
-
-            migrationBuilder.InsertData(
-                table: "AspNetUserRoles",
-                columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "reader_role", "2" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -261,9 +228,6 @@ namespace Library.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "Books");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

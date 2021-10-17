@@ -6,9 +6,24 @@
     <members>
         <member name="M:BookApi.Controllers.AuthenticationController.Login(BookApi.Models.AuthCredentials)">
             <summary>
-            Request a token
+            Get a token for authorization
             </summary>
             <param name="credentials"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookApi.Controllers.AuthenticationController.GetUsers">
+            <summary>
+            This method shows entire collection of users
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BookApi.Controllers.AuthenticationController.CreateUser(System.String,System.String,System.String)">
+            <summary>
+            This method helps to create a new user
+            </summary>
+            <param name="login"></param>
+            <param name="email"></param>
+            <param name="password"></param>
             <returns></returns>
         </member>
         <member name="T:BookApi.Controllers.BooksController">
@@ -29,14 +44,14 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:BookApi.Controllers.BooksController.PostBooks(BookApi.Models.Book)">
+        <member name="M:BookApi.Controllers.BooksController.PostBooks(Library.Models.RemoteBook)">
             <summary>
             This method helps to add a new book to the library
             </summary>
             <param name="book"></param>
             <returns></returns>
         </member>
-        <member name="M:BookApi.Controllers.BooksController.PutBooks(System.Guid,BookApi.Models.Book)">
+        <member name="M:BookApi.Controllers.BooksController.PutBooks(System.Guid,Library.Models.RemoteBook)">
             <summary>
             This method helps to change info about a book with suggested id
             </summary>
@@ -50,12 +65,6 @@
             </summary>
             <param name="id"></param>
             <returns></returns>
-        </member>
-        <member name="M:Library.Controllers.UserController.GetUsers">
-            <summary>
-            users
-            </summary>
-            <returns>Collection of books</returns>
         </member>
     </members>
 </doc>
