@@ -8,6 +8,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using BookApi.Db;
 
 namespace BookApi.Services
 {
@@ -16,11 +18,14 @@ namespace BookApi.Services
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _configuration;
         private IdentityUser _user;
+        private static int id = 10;
+        private readonly AuthContext _context;
 
-        public AuthenticationManager(UserManager<IdentityUser> userManager, IConfiguration configuration)
+        public AuthenticationManager(UserManager<IdentityUser> userManager, IConfiguration configuration, AuthContext context)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _context = context;
         }
 
         public async Task<bool> ValidateCredentials(AuthCredentials credentials)
@@ -59,6 +64,30 @@ namespace BookApi.Services
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
             return claims;
+        }
+        public async Task<IEnumerable<IdentityUser>> Get()
+        {
+            return await _context.Users.ToListAsync();
+        }
+
+        public async Task<IdentityUser> CreateUser( string username, string email, string password)
+        {
+            var modelBuilder = new ModelBuilder();
+            var ph = new PasswordHasher<IdentityUser>();
+            var user = new IdentityUser
+            {
+                Id = (++id).ToString(),
+                UserName = username,
+                NormalizedUserName = username.ToUpper(),
+                Email = email,
+                EmailConfirmed = true
+            };
+            user.PasswordHash = ph.HashPassword(user, password);
+            UsersDatabaseSeeder.SeedUserRoles(modelBuilder, user.Id);
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+            modelBuilder.Entity<IdentityUser>().HasData(user);
+            return user;
         }
     }
 }

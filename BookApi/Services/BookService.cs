@@ -1,5 +1,7 @@
 ﻿using BookApi.Db;
 using BookApi.Models;
+using Library.Db;
+using Library.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,14 +11,14 @@ namespace BookApi.Services
 {
     public class BookService : IBookService
     {
-        private readonly BookContext _context;
-        public BookService(BookContext context)
+        private readonly RemoteBooksDBContext _context;
+        public BookService(RemoteBooksDBContext context)
         {
             _context = context;
         }
-        public async Task<Book> Create(Book book)
+        public async Task<RemoteBook> Create(RemoteBook book)
         {
-            _context.Books.Add(book);
+            _context.RemoteBooks.Add(book);
             await _context.SaveChangesAsync();
 
             return book;
@@ -24,22 +26,22 @@ namespace BookApi.Services
 
         public async Task Delete(Guid id)
         {
-            var bookToDelete = await _context.Books.FindAsync(id);
-            _context.Books.Remove(bookToDelete);
+            var bookToDelete = await _context.RemoteBooks.FindAsync(id);
+            _context.RemoteBooks.Remove(bookToDelete);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Book>> Get()
+        public async Task<IEnumerable<RemoteBook>> Get()
         {
-            return await _context.Books.ToListAsync();
+            return await _context.RemoteBooks.ToListAsync();
         }
 
-        public async Task<Book> Get(Guid id)
+        public async Task<RemoteBook> Get(Guid id)
         {
-            return await _context.Books.FindAsync(id);
+            return await _context.RemoteBooks.FindAsync(id);
         }
 
-        public async Task Update(Book book)
+        public async Task Update(RemoteBook book)
         {
             _context.Entry(book).State = EntityState.Modified;
             await _context.SaveChangesAsync();

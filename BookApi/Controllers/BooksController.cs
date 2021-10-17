@@ -1,6 +1,6 @@
 ﻿using BookApi.Models;
-using BookApi.Repositories;
 using BookApi.Services;
+using Library.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -31,8 +31,8 @@ namespace BookApi.Controllers
         /// This method shows entire collection of books
         /// </summary>
         /// <returns>Collection of books</returns>
-        [HttpGet, Authorize]
-        public async Task<IEnumerable<Book>> GetBooks()
+        [HttpGet("getAllBooks"), Authorize]
+        public async Task<IEnumerable<RemoteBook>> GetBooks()
         {
             return await _bookService.Get();
         }
@@ -42,8 +42,8 @@ namespace BookApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}"), Authorize]
-        public async Task<ActionResult<Book>> GetBook(Guid id)
+        [HttpGet("getbook{id}"), Authorize]
+        public async Task<ActionResult<RemoteBook>> GetBook(Guid id)
         {
             return await _bookService.Get(id);
         }
@@ -53,8 +53,8 @@ namespace BookApi.Controllers
         /// </summary>
         /// <param name="book"></param>
         /// <returns></returns>
-        [HttpPost, Authorize(Roles = "admin")]
-        public async Task<ActionResult<Book>> PostBooks([FromBody] Book book)
+        [HttpPost("createNewBook"), Authorize(Roles = "admin")]
+        public async Task<ActionResult<RemoteBook>> PostBooks([FromBody] RemoteBook book)
         {
             var newBook = await _bookService.Create(book);
             return CreatedAtAction(nameof(GetBooks), new { id = newBook.Id }, newBook);
@@ -66,8 +66,8 @@ namespace BookApi.Controllers
         /// <param name="id"></param>
         /// <param name="book"></param>
         /// <returns></returns>
-        [HttpPut, Authorize(Roles = "admin")]
-        public async Task<ActionResult> PutBooks(Guid id, [FromBody] Book book)
+        [HttpPut("changeBookInformation{id}"), Authorize(Roles = "admin")]
+        public async Task<ActionResult> PutBooks(Guid id, [FromBody] RemoteBook book)
         {
             if (id != book.Id)
             {
@@ -83,7 +83,7 @@ namespace BookApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete("{id}"), Authorize(Roles = "admin")]
+        [HttpDelete("deleteBook{id}"), Authorize(Roles = "admin")]
         public async Task<ActionResult> Delete(Guid id)
         {
             var bookToDelete = await _bookService.Get(id);
