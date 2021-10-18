@@ -49,14 +49,14 @@ namespace Library.Migrations
                         new
                         {
                             Id = "admin_role",
-                            ConcurrencyStamp = "b9ae020b-283e-49e4-89b0-2c32b64f9825",
+                            ConcurrencyStamp = "789423aa-6147-4d72-bcf9-f1721060bbc4",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "reader_role",
-                            ConcurrencyStamp = "3689b6dd-2d82-467e-bec0-e85faaf9507f",
+                            ConcurrencyStamp = "dcacb99a-1379-48e6-8299-546d0fcbbad3",
                             Name = "reader",
                             NormalizedName = "READER"
                         });
@@ -155,14 +155,14 @@ namespace Library.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e699253d-3d6e-4fd3-886c-11ad1f4e2c65",
+                            ConcurrencyStamp = "27c4b014-42ae-45a1-93a1-6ba25b26f635",
                             Email = "artsemi@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "ARTSEMI",
-                            PasswordHash = "AQAAAAEAACcQAAAAEH1VmwQyqL4hCYeuVTVgzGZNy0u8Wdk102abCR4z2a9Qmb6GWn81n6fa0s2W31NW0A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAgbDryeJzO+MPFSGGhQ306SnYOitnVvnPUPo2U+AMoQCE6bIvNJryBF9APp1RDHmw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b6e44f6b-d9ab-40dd-af8a-c9e10d4defde",
+                            SecurityStamp = "6f5e81e0-0601-4cf4-86f3-786b44612cc7",
                             TwoFactorEnabled = false,
                             UserName = "Artsemi"
                         });

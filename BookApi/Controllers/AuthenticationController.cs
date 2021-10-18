@@ -29,7 +29,7 @@ namespace BookApi.Controllers
         [HttpPost("login")]
         [ApiConventionMethod(typeof(DefaultApiConventions),
             nameof(DefaultApiConventions.Post))]
-        public async Task<IActionResult> Login([FromBody] AuthCredentials credentials)
+        public async Task<IActionResult> Login( AuthCredentials credentials)
         {
             if (!ModelState.IsValid)
                 return BadRequest();

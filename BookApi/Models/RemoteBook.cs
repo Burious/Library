@@ -13,5 +13,8 @@ namespace Library.Models
         public string Description { get; set; }
         public string Publishment { get; set; }
         public DateTime YearOfPublish { get; set; }
+        public Guid? CustomerInfoId { get; set; }
+
+        public virtual User CustomerInfo { get; set; }
     }
 }

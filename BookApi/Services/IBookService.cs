@@ -8,10 +8,10 @@ namespace BookApi.Services
 {
     public interface IBookService
     {
-        Task<IEnumerable<RemoteBook>> Get();
-        Task<RemoteBook> Get(Guid id);
-        Task<RemoteBook> Create(RemoteBook book);
-        Task Update(RemoteBook book);
-        Task Delete(Guid id);
+        Task<IEnumerable<RemoteBook>> Get(string userName);
+       // Task<RemoteBook> Get(string username, Guid id);
+        Task<RemoteBook> Create(string userName, string title, string aithor, string description, string publishment, int yearOfPublish);
+       // Task Update(string userName, RemoteBook book);
+        //Task Delete(string userName, Guid id);
     }
 }
