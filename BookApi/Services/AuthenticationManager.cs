@@ -18,7 +18,7 @@ namespace BookApi.Services
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _configuration;
         private IdentityUser _user;
-        private static int id = 10;
+       // private static int id = 10;
         private readonly AuthContext _context;
 
         public AuthenticationManager(UserManager<IdentityUser> userManager, IConfiguration configuration, AuthContext context)
@@ -76,7 +76,7 @@ namespace BookApi.Services
             var ph = new PasswordHasher<IdentityUser>();
             var user = new IdentityUser
             {
-                Id = (++id).ToString(),
+                Id = Guid.NewGuid().ToString(),//(++id).ToString(),
                 UserName = username,
                 NormalizedUserName = username.ToUpper(),
                 Email = email,

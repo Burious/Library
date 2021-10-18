@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Migrations
 {
     [DbContext(typeof(AuthContext))]
-    [Migration("20211017160223_m")]
-    partial class m
+    [Migration("20211018115652_mm")]
+    partial class mm
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,14 +51,14 @@ namespace Library.Migrations
                         new
                         {
                             Id = "admin_role",
-                            ConcurrencyStamp = "c0ac590e-0f63-41e2-8f5f-12e6ba1367e6",
+                            ConcurrencyStamp = "b9ae020b-283e-49e4-89b0-2c32b64f9825",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "reader_role",
-                            ConcurrencyStamp = "823f3800-774d-4834-b0cd-6f458efd1fa9",
+                            ConcurrencyStamp = "3689b6dd-2d82-467e-bec0-e85faaf9507f",
                             Name = "reader",
                             NormalizedName = "READER"
                         });
@@ -157,14 +157,14 @@ namespace Library.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "724b4eea-464a-4cc1-85ca-ea1605a0855d",
+                            ConcurrencyStamp = "e699253d-3d6e-4fd3-886c-11ad1f4e2c65",
                             Email = "artsemi@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "ARTSEMI",
-                            PasswordHash = "AQAAAAEAACcQAAAAENn1VJMpSSvtTVz0ezUd+c1UUWW1pz0qhamI8RQjx0ZNSpNFrGLu9E+xCKnZLc2/hA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH1VmwQyqL4hCYeuVTVgzGZNy0u8Wdk102abCR4z2a9Qmb6GWn81n6fa0s2W31NW0A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d167b08a-c178-4d68-93f9-cc601b3874eb",
+                            SecurityStamp = "b6e44f6b-d9ab-40dd-af8a-c9e10d4defde",
                             TwoFactorEnabled = false,
                             UserName = "Artsemi"
                         });

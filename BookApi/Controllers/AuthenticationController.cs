@@ -57,7 +57,7 @@ namespace BookApi.Controllers
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        [HttpPost("createNewUser"), Authorize(Roles = "admin")]
+        [HttpPost("createNewUser"), AllowAnonymous]
         [ApiConventionMethod(typeof(DefaultApiConventions),
             nameof(DefaultApiConventions.Post))]
         public async Task<ActionResult<IdentityUser>> CreateUser(string login, string email, string password)
