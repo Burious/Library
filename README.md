@@ -8,4 +8,5 @@ Description of the project:
 
 Features:
 1. Will try to add automapping.
+2. Customize library for particular user(now all users see a common information, on the next step - each user will have it's own library)
 
