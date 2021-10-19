@@ -15,6 +15,6 @@ namespace Library.Models
         public Guid Id { get; set; }
         public string UserName { get; set; }
 
-        public virtual ICollection<RemoteBook> RemoteBooks { get; set; }
+        public virtual HashSet<RemoteBook> RemoteBooks { get; set; }
     }
 }

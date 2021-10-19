@@ -90,7 +90,7 @@ namespace BookApi.Services
             UsersDatabaseSeeder.SeedUserRoles(modelBuilder, user.Id);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
-            _remContext.Users.Add(new User() {Id = Guid.NewGuid(), UserName = username, RemoteBooks = new List<RemoteBook>() });
+            _remContext.Users.Add(new User() {Id = Guid.NewGuid(), UserName = username, RemoteBooks = new HashSet<RemoteBook>() });
             await _remContext.SaveChangesAsync();
             modelBuilder.Entity<IdentityUser>().HasData(user);
             return user;

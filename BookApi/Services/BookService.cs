@@ -40,29 +40,30 @@ namespace BookApi.Services
             return book;
         }
 
-        /*public async Task Delete(string userName, Guid id)
+        public async Task Delete(Guid id)
         {
-            var userToUpdate = await _context.Users.FindAsync(userName);
+           // var userToUpdate = await _context.Users.FindAsync(userName);
             var bookToDelete = await _context.RemoteBooks.FindAsync(id);
             _context.RemoteBooks.Remove(bookToDelete);
             await _context.SaveChangesAsync();
-        }*/
+        }
         //done
         public async Task<IEnumerable<RemoteBook>> Get(string userName)
         {
-            var books = _context.RemoteBooks.Where(b => b.CustomerInfo.UserName == userName).ToList();
+            var books = _context.RemoteBooks.Where(b => b.CustomerInfo.UserName == userName).ToList().OrderBy(b=>b.Title);
             return books;
         }
         //?
-       /* public async Task<RemoteBook> Get(string userName, Guid id)
+        public async Task<RemoteBook> Get(Guid id)
         {
             return await _context.RemoteBooks.FindAsync(id);
-        }*/
+        }
 
-        /*public async Task Update(string userName, RemoteBook book)
+        public async Task Update(string userName, RemoteBook book)
         {
+            book.CustomerInfo = _context.Users.Where(u => u.UserName == userName).ToList().First();
             _context.Entry(book).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-        }*/
+        }
     }
 }

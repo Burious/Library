@@ -37,11 +37,33 @@
             </summary>
             <returns>Collection of books</returns>
         </member>
+        <member name="M:BookApi.Controllers.BooksController.GetBook(System.Guid)">
+            <summary>
+            This method finds a book for suggested Id (or maybe find by book name?)
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:BookApi.Controllers.BooksController.PostBooks(System.String,System.String,System.String,System.String,System.Int32)">
             <summary>
             This method helps to add a new book to the library
             </summary>
             <param name="book"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookApi.Controllers.BooksController.PutBooks(System.Guid,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            This method helps to change info about a book with suggested id
+            </summary>
+            <param name="id"></param>
+            <param name="book"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookApi.Controllers.BooksController.Delete(System.Guid)">
+            <summary>
+            This method deletes a book with suggested id
+            </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
     </members>

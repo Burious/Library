@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace BookApi.Controllers
 {
@@ -60,7 +61,7 @@ namespace BookApi.Controllers
         [HttpPost("createNewUser"), AllowAnonymous]
         [ApiConventionMethod(typeof(DefaultApiConventions),
             nameof(DefaultApiConventions.Post))]
-        public async Task<ActionResult<IdentityUser>> CreateUser(string login, string email, string password)
+        public async Task<ActionResult<IdentityUser>> CreateUser(string login, string email,string password)
         {
             var newUser = await _authManager.CreateUser(login, email, password);
             return CreatedAtAction(nameof(GetUsers), new { id = newUser.Id }, newUser);
