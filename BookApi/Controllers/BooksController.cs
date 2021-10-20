@@ -49,7 +49,6 @@ namespace BookApi.Controllers
         [HttpGet("getbook{id}"), Authorize]
         public async Task<ActionResult<RemoteBook>> GetBook(Guid id)
         {
-            var name = HttpContext.User.Identity.Name;
             return await _bookService.Get(id);
         }
 
@@ -59,7 +58,7 @@ namespace BookApi.Controllers
         /// <param name="book"></param>
         /// <returns></returns>
         [HttpPost("createNewBook")]
-        public async Task<ActionResult<RemoteBook>> PostBooks(string title, string author, string description, string publishment, int yearOfPublish)
+        public async Task<ActionResult<RemoteBook>> PostBooks(string title, string author, string description, string publishment, int? yearOfPublish)
         {
             var name = HttpContext.User.Identity.Name;
             var newBook = await _bookService.Create(name,title, author, description,publishment, yearOfPublish);
@@ -73,9 +72,18 @@ namespace BookApi.Controllers
         /// <param name="book"></param>
         /// <returns></returns>
        [HttpPut("changeBookInformation{id}")]
-        public async Task<ActionResult> PutBooks(Guid id, string title, string author, string description, string publishment, int yearOfPublish)
+        public async Task<ActionResult> PutBooks(Guid id, string title, string author, string description, string publishment, int? yearOfPublish)
         {
-            var book = new RemoteBook { Id = id, Title = title, Author = author, Description = description, Publishment = publishment, YearOfPublish = new DateTime(yearOfPublish,1,1)};
+            
+            var book = new RemoteBook()
+            {
+                Id = id,
+                Title = title != null ? title : string.Empty,
+                Author = author != null ? author : string.Empty,
+                Description = description != null ? description : string.Empty,
+                Publishment = publishment != null ? publishment : string.Empty,
+                YearOfPublish = yearOfPublish!=null? new DateTime(yearOfPublish.Value, 1, 1): new DateTime(1, 1, 1),
+            };
             if (id != book.Id)
             {
                 return BadRequest();

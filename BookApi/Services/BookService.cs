@@ -19,17 +19,17 @@ namespace BookApi.Services
         }
 
 
-        public async Task<RemoteBook> Create(string userName, string title,string author, string description, string publishment, int yearOfPublish)
+        public async Task<RemoteBook> Create(string userName, string title,string author, string description, string publishment, int? yearOfPublish)
         {
 
             var book = new RemoteBook()
             {
                 Id = Guid.NewGuid(),
-                Title = title,
-                Author = author,
-                Description = description,
-                Publishment = publishment,
-                YearOfPublish = new DateTime(yearOfPublish, 1, 1),
+                Title = title != null ? title: string.Empty,
+                Author = author != null ? author : string.Empty,
+                Description = description != null ? description : string.Empty,
+                Publishment = publishment != null ? publishment : string.Empty,
+                YearOfPublish = yearOfPublish != null ? new DateTime(yearOfPublish.Value, 1, 1) : new DateTime(1, 1, 1),
                 CustomerInfo = _context.Users.Where(u => u.UserName == userName).ToList().First(),
                 //CustomerInfoId = Guid.NewGuid()
             };

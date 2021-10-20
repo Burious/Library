@@ -44,14 +44,14 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:BookApi.Controllers.BooksController.PostBooks(System.String,System.String,System.String,System.String,System.Int32)">
+        <member name="M:BookApi.Controllers.BooksController.PostBooks(System.String,System.String,System.String,System.String,System.Nullable{System.Int32})">
             <summary>
             This method helps to add a new book to the library
             </summary>
             <param name="book"></param>
             <returns></returns>
         </member>
-        <member name="M:BookApi.Controllers.BooksController.PutBooks(System.Guid,System.String,System.String,System.String,System.String,System.Int32)">
+        <member name="M:BookApi.Controllers.BooksController.PutBooks(System.Guid,System.String,System.String,System.String,System.String,System.Nullable{System.Int32})">
             <summary>
             This method helps to change info about a book with suggested id
             </summary>
