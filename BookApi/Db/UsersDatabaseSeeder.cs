@@ -26,6 +26,15 @@ namespace BookApi.Db
                 EmailConfirmed = true
             };
             user1.PasswordHash = ph.HashPassword(user1, "Artsemi123");
+            var user2 = new IdentityUser
+            {
+                Id = "2",
+                UserName = "Admin",
+                NormalizedUserName = "artsemi".ToUpper(),
+                Email = "admin@gmail.com",
+                EmailConfirmed = true
+            };
+            user2.PasswordHash = ph.HashPassword(user2, "Admin123");
             modelBuilder.Entity<IdentityUser>().HasData(user1);
 
         }

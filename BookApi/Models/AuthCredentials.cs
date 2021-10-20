@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookApi.Models
 {
@@ -6,7 +7,8 @@ namespace BookApi.Models
     {
         [Required]
         public string Username { get; set; }
-        [Required]
+
+        [Required, HiddenInput(DisplayValue =false )]
         public string Password { get; set; }
     }
 }

@@ -100,4 +100,9 @@ C:\Users\Burious\source\repos\LibraryInitial\BookApi\obj\Debug\netcoreapp3.1\Lib
 C:\Users\Burious\source\repos\LibraryInitial\BookApi\obj\Debug\netcoreapp3.1\Library.xml
 C:\Users\Burious\source\repos\LibraryInitial\BookApi\obj\Debug\netcoreapp3.1\Library.pdb
 C:\Users\Burious\source\repos\LibraryInitial\BookApi\obj\Debug\netcoreapp3.1\Library.genruntimeconfig.cache
+C:\Users\Burious\source\repos\LibraryInitial\BookApi\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+C:\Users\Burious\source\repos\LibraryInitial\BookApi\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll
 C:\Users\Burious\source\repos\LibraryInitial\BookApi\obj\Debug\netcoreapp3.1\Library.csproj.AssemblyReference.cache
+C:\Users\Burious\source\repos\LibraryInitial\BookApi\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+C:\Users\Burious\source\repos\LibraryInitial\BookApi\bin\Debug\netcoreapp3.1\System.Web.Http.dll
+C:\Users\Burious\source\repos\LibraryInitial\BookApi\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
@@ -13,5 +14,8 @@ namespace Library.Models
         public string Description { get; set; }
         public string Publishment { get; set; }
         public DateTime YearOfPublish { get; set; }
+        public Guid? CustomerInfoId { get; set; }
+        [HiddenInput(DisplayValue = false)]
+        public virtual User CustomerInfo { get; set; }
     }
 }

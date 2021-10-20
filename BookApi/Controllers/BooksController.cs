@@ -1,5 +1,6 @@
 ﻿using BookApi.Models;
 using BookApi.Services;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Library.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -8,7 +9,9 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace BookApi.Controllers
 {
@@ -21,8 +24,8 @@ namespace BookApi.Controllers
     public class BooksController : ControllerBase
     {
         private readonly IBookService _bookService;
-       // private readonly ILogger<BooksController> _logger;
-        public BooksController(IBookService bookService)
+        // private readonly ILogger<BooksController> _logger;
+        public BooksController(IBookService bookService) //  AuthenticationManager manager
         {
             _bookService = bookService;
         }
@@ -34,11 +37,12 @@ namespace BookApi.Controllers
         [HttpGet("getAllBooks"), Authorize]
         public async Task<IEnumerable<RemoteBook>> GetBooks()
         {
-            return await _bookService.Get();
+            var name = HttpContext.User.Identity.Name;
+            return await _bookService.Get(name); 
         }
 
         /// <summary>
-        /// This method finds a book for suggested Id
+        /// This method finds a book for suggested Id (or maybe find by book name?)
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -53,11 +57,12 @@ namespace BookApi.Controllers
         /// </summary>
         /// <param name="book"></param>
         /// <returns></returns>
-        [HttpPost("createNewBook"), Authorize(Roles = "admin")]
-        public async Task<ActionResult<RemoteBook>> PostBooks([FromBody] RemoteBook book)
+        [HttpPost("createNewBook")]
+        public async Task<ActionResult<RemoteBook>> PostBooks(string title, string author, string description, string publishment, int? yearOfPublish)
         {
-            var newBook = await _bookService.Create(book);
-            return CreatedAtAction(nameof(GetBooks), new { id = newBook.Id }, newBook);
+            var name = HttpContext.User.Identity.Name;
+            var newBook = await _bookService.Create(name,title, author, description,publishment, yearOfPublish);
+            return CreatedAtAction(nameof(GetBooks), new { id = newBook.Id }, newBook.Title);
         }
 
         /// <summary>
@@ -66,15 +71,25 @@ namespace BookApi.Controllers
         /// <param name="id"></param>
         /// <param name="book"></param>
         /// <returns></returns>
-        [HttpPut("changeBookInformation{id}"), Authorize(Roles = "admin")]
-        public async Task<ActionResult> PutBooks(Guid id, [FromBody] RemoteBook book)
+       [HttpPut("changeBookInformation{id}")]
+        public async Task<ActionResult> PutBooks(Guid id, string title, string author, string description, string publishment, int? yearOfPublish)
         {
+            
+            var book = new RemoteBook()
+            {
+                Id = id,
+                Title = title != null ? title : string.Empty,
+                Author = author != null ? author : string.Empty,
+                Description = description != null ? description : string.Empty,
+                Publishment = publishment != null ? publishment : string.Empty,
+                YearOfPublish = yearOfPublish!=null? new DateTime(yearOfPublish.Value, 1, 1): new DateTime(1, 1, 1),
+            };
             if (id != book.Id)
             {
                 return BadRequest();
             }
-
-            await _bookService.Update(book);
+            var name = HttpContext.User.Identity.Name;
+            await _bookService.Update(name, book);
 
             return NoContent();
         }
@@ -83,7 +98,7 @@ namespace BookApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete("deleteBook{id}"), Authorize(Roles = "admin")]
+        [HttpDelete("deleteBook{id}")]
         public async Task<ActionResult> Delete(Guid id)
         {
             var bookToDelete = await _bookService.Get(id);

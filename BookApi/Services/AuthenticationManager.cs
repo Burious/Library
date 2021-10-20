@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BookApi.Db;
+using Library.Db;
+using Library.Models;
 
 namespace BookApi.Services
 {
@@ -18,14 +20,16 @@ namespace BookApi.Services
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _configuration;
         private IdentityUser _user;
-        private static int id = 10;
+       // private static int id = 10;
         private readonly AuthContext _context;
+        private readonly RemoteBooksDBContext _remContext;
 
-        public AuthenticationManager(UserManager<IdentityUser> userManager, IConfiguration configuration, AuthContext context)
+        public AuthenticationManager(UserManager<IdentityUser> userManager, IConfiguration configuration, AuthContext context,RemoteBooksDBContext remContext)
         {
             _userManager = userManager;
             _configuration = configuration;
             _context = context;
+            _remContext = remContext;
         }
 
         public async Task<bool> ValidateCredentials(AuthCredentials credentials)
@@ -76,7 +80,7 @@ namespace BookApi.Services
             var ph = new PasswordHasher<IdentityUser>();
             var user = new IdentityUser
             {
-                Id = (++id).ToString(),
+                Id = Guid.NewGuid().ToString(),//(++id).ToString(),
                 UserName = username,
                 NormalizedUserName = username.ToUpper(),
                 Email = email,
@@ -86,6 +90,8 @@ namespace BookApi.Services
             UsersDatabaseSeeder.SeedUserRoles(modelBuilder, user.Id);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
+            _remContext.Users.Add(new User() {Id = Guid.NewGuid(), UserName = username, RemoteBooks = new HashSet<RemoteBook>() });
+            await _remContext.SaveChangesAsync();
             modelBuilder.Entity<IdentityUser>().HasData(user);
             return user;
         }
